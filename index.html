@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reservasi Tiket Konser</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: yellow;
+        }
+        header {
+            background-color: black;
+            color: orchid;
+            padding: 1rem;
+            text-align: center;
+        }
+        main {
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 1rem;
+            background: #fff;
+            border-radius: 8px;
+            border-color: black;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        h1, h2, h3 {
+            color: #333;
+        }
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+        select, input {
+            width: 100%;
+            padding: 0.5rem;
+            font-size: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #1a73e8;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #155ab4;
+        }
+        .section {
+            margin-top: 2rem;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 0.75rem;
+            text-align: left;
+        }
+        th {
+            background-color: khaki;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1 style="color: Yellow;">Reservasi Tiket Digital Konser </h1>
+    </header>
+    <main>
+        <!-- Ticket Selection Section -->
+        <section>
+            <h2>Reservasi Tiket Guys</h2>
+            <form id="ticketForm">
+                <div class="form-group">
+                    <label for="ticketType">Tipe Tiket</label>
+                    <select id="ticketType" name="ticketType">
+                        <option value="vip">VIP</option>
+                        <option value="regular">Regular</option>
+                        <option value="student">Pelajar</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="quantity">Jumlah</label>
+                    <input type="number" id="quantity" name="quantity" min="1" max="10" required>
+                </div>
+                <button type="submit">Reservasi Sekarang</button>
+            </form>
+        </section>
+
+        <!-- Booking Queue Section -->
+        <section class="section">
+            <h2>Antrian Reservasi</h2>
+            <table id="queueTable">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Tipe Tiket</th>
+                        <th>Jumlah</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td colspan="3">Belum Mereservasi</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Purchase History Section -->
+        <section class="section">
+            <h2>Riwayat Pembelian</h2>
+            <table id="historyTable">
+                <thead>
+                    <tr>
+                        <th>Tanggal</th>
+                        <th>Jenis Tiket</th>
+                        <th>Jumlah</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td colspan="3">Tidak ada riwayat pemesanan</td>.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+    <script>
+        document.getElementById('ticketForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const ticketType = document.getElementById('ticketType').value;
+            const quantity = document.getElementById('quantity').value;
+
+            const queueTable = document.getElementById('queueTable').querySelector('tbody');
+            const newRow = document.createElement('tr');
+
+            newRow.innerHTML = `
+                <td>${queueTable.children.length + 1}</td>
+                <td>${ticketType}</td>
+                <td>${quantity}</td>
+            `;
+
+            queueTable.appendChild(newRow);
+        });
+    </script>
+</body>
+</html>
